@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Model library · Curve Fit Bench</title>
+<meta name="description" content="Search all 442 physical models in Curve Fit Bench.">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://satyajitpuhan.github.io/fitbench/models.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Model library · Curve Fit Bench">
+<meta property="og:description" content="Search all 442 physical models in Curve Fit Bench.">
+<meta property="og:image" content="https://satyajitpuhan.github.io/fitbench/assets/img/complex-fit.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;650&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="">Curve Fit Bench</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a><a href="features.html">Features</a><a href="models.html" aria-current="page">Models</a><a href="benchmark.html">Benchmark</a><a href="docs.html">Docs</a><a href="about.html">About</a>
+      <a class="plans" href="plans.html">Plans &amp; licensing</a>
+      <a class="btn btn-primary btn-sm" href="app/">Launch the bench</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Model library</span>
+    <h1>442 models, written by physicists.</h1>
+    <p class="lead">Each one carries starting values read from your data and, where physics demands it, bounds. Numerical models — the BCS gap equation, Bloch–Grüneisen and Debye integrals, WHH, Callaway — are solved properly rather than approximated.</p>
+  </div>
+</section>
+<section style="padding-top:clamp(28px,4vw,44px)">
+  <div class="wrap">
+    <div class="filters">
+      <label class="search" for="mq"><span class="muted" aria-hidden="true">⌕</span><input id="mq" type="search" placeholder="Search: BCS, Fano, Urbach, hopping, Curie…" autocomplete="off"></label>
+      <span class="count" id="mcount" aria-live="polite"></span>
+    </div>
+    <div class="chips" id="chips" aria-label="Filter by subject"></div>
+    <div class="mlist" id="mlist"></div>
+    <div class="more-row"><button class="btn btn-ghost" id="mmore" type="button" hidden>Show more</button></div>
+    <div class="callout" style="margin-top:36px"><p><b>Missing the model your analysis needs?</b> We write custom models and verify them on synthetic data the same way as the library. <a href="mailto:puhansatyajit@gmail.com?subject=Curve%20Fit%20Bench%20-%20custom%20model&amp;body=Model%20name%20/%20equation%3A%0A%0AWhat%20x%20and%20y%20are%3A%0A%0AA%20sample%20dataset%20%28optional%29%3A%0A">Request a model</a> or see <a href="plans.html">plans</a>.</p></div>
+  </div>
+</section>
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="">Curve Fit Bench</a>
+        <p style="margin-top:12px;max-width:40ch">Least-squares curve fitting for physicists and materials scientists. Runs in your browser; your data never leaves your computer.</p>
+      </div>
+      <div><h4>Product</h4><a href="app/">Launch the bench</a><a href="features.html">Features</a><a href="models.html">Model library</a><a href="benchmark.html">Benchmark</a></div>
+      <div><h4>Learn</h4><a href="docs.html">Documentation</a><a href="assets/curve-fit-bench-manual.pdf">Manual (PDF)</a><a href="about.html#cite">How to cite</a><a href="https://github.com/satyajitpuhan/curve-fit-bench">Source on GitHub</a></div>
+      <div><h4>Work with us</h4><a href="plans.html">Plans &amp; licensing</a><a href="plans.html#sponsor">Sponsor development</a><a href="mailto:puhansatyajit@gmail.com?subject=Curve%20Fit%20Bench%20-%20custom%20model">Request a model</a><a href="about.html">About the authors</a></div>
+    </div>
+    <div class="foot-legal">
+      <span>© 2026 Shivani Malvi &amp; Satyajit Puhan. Free to use for research and teaching; modification and redistribution need written permission (<a href="https://github.com/satyajitpuhan/curve-fit-bench/blob/main/LICENSE">licence</a>).</span>
+      <span><a href="mailto:puhansatyajit@gmail.com">puhansatyajit@gmail.com</a></span>
+    </div>
+  </div>
+</footer>
+<script src="assets/models.js" defer></script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

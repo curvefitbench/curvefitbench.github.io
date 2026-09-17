@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Documentation · Curve Fit Bench</title>
+<meta name="description" content="Quick start, data format, equations and how to read a Curve Fit Bench result.">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://satyajitpuhan.github.io/fitbench/docs.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Documentation · Curve Fit Bench">
+<meta property="og:description" content="Quick start, data format, equations and how to read a Curve Fit Bench result.">
+<meta property="og:image" content="https://satyajitpuhan.github.io/fitbench/assets/img/complex-fit.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;650&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="">Curve Fit Bench</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a><a href="features.html">Features</a><a href="models.html">Models</a><a href="benchmark.html">Benchmark</a><a href="docs.html" aria-current="page">Docs</a><a href="about.html">About</a>
+      <a class="plans" href="plans.html">Plans &amp; licensing</a>
+      <a class="btn btn-primary btn-sm" href="app/">Launch the bench</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Documentation</span>
+    <h1>Using the bench.</h1>
+    <p class="lead">Everything you need for a first fit in five minutes. The full manual, with every model in the library, is a <a href="assets/curve-fit-bench-manual.pdf">162-page PDF</a>.</p>
+  </div>
+</section>
+<section>
+  <div class="wrap doc">
+    <nav class="toc" aria-label="On this page">
+      <a href="#start">Quick start</a><a href="#data">Data format</a><a href="#modes">Fitting modes</a><a href="#equations">Writing equations</a><a href="#reading">Reading the result</a><a href="#adaptive">Adaptive decomposition</a><a href="#explorer">Parameter explorer</a><a href="#export">Figures &amp; export</a><a href="#cite">Citing</a>
+    </nav>
+    <div class="prose">
+      <h2 id="start">Quick start</h2>
+      <ol>
+        <li>Open <a href="app/">the bench</a>. It loads with a sample dataset already fitted.</li>
+        <li>Drop your CSV or TXT file on the data panel, or paste x&nbsp;y pairs, one per line.</li>
+        <li>Read the best fit: the formula, parameters with uncertainties, reduced χ² and the region strip. Click any row in the ranking to see another model.</li>
+      </ol>
+      <h2 id="data">Data format</h2>
+      <p>Two columns are x and y. A third column is read as the uncertainty σ<sub>y</sub> — the bench asks before assuming — and a header row names the axes. Commas, tabs and spaces all work, and instrument files with a few text lines at the top are handled.</p>
+<pre class="code"><span class="c"># temperature (K), resistivity (µΩ cm), sigma</span>
+T, rho, sigma
+2.0, 1.842, 0.004
+4.0, 1.843, 0.004
+6.0, 1.847, 0.004</pre>
+      <h2 id="modes">Fitting modes</h2>
+      <p><b>Best form</b> searches every enabled family and ranks them. <b>My equations</b> fits only what you type, and still shows the automatic pick as a dashed comparison. Under <i>Model families</i> you can switch groups on and off — the materials-science library is off by default.</p>
+      <h2 id="equations">Writing equations</h2>
+      <p>Every letter that is not <code>x</code> becomes a parameter. After a semicolon give starting values, bounds and fixed values:</p>
+<pre class="code">A*exp(-x/tau) + c ; A=2, tau=5, tau&gt;0
+<span class="c"># fixed parameter with !</span>
+rho0 + a*x^n ; n=2, !rho0=1.84
+<span class="c"># several equations, one per line, are fitted and compared</span>
+A/(1+((x-x0)/g)^2) + b ; g&gt;0</pre>
+      <p>Functions include <code>exp log sqrt sin cos tanh erf erfc gamma voigt digamma brillouin lambertw</code> and more — 65 in all.</p>
+      <h2 id="reading">Reading the result</h2>
+      <p><b>Reduced χ²</b> (χ²/ν) is near 1 for a correct model when σ is given. Without σ, look at the <i>misfit</i>: how far the curve sits from the points in units of the point-to-point noise. The <b>runs z</b> flags residuals in long same-sign stretches, and the <b>by region</b> strip shows χ²/N in up to ten parts of the x range.</p>
+      <div class="callout"><p>A green headline with an orange or red region means the model is right on average and wrong somewhere specific — look there first.</p></div>
+      <h2 id="adaptive">Adaptive decomposition</h2>
+      <p>It runs only when nothing else comes within the noise. The result is listed as <i>Adaptive decomposition: …</i> with its components; switch on <b>components</b> to draw them. Use it to read positions, widths and frequencies, then fit the named model that matches your mechanism. The <b>Best named physics model</b> card always shows the best library model alongside.</p>
+      <h2 id="explorer">Parameter explorer</h2>
+      <p>Below the ranking, pick a parameter, choose multiples of the fitted value or absolute values (<code>0.5, 1, 2</code> or <code>from:to:count</code>) and compare curves and χ²/ν. <b>Edit this plot</b> opens its own styling panel.</p>
+      <h2 id="export">Figures &amp; export</h2>
+      <p><b>Edit plot</b> controls titles, ranges, ticks, fonts, colours and the statistics box. <b>Only selected curve</b> hides everything but the model chosen in the ranking. PNG and PDF save at 3× resolution; <b>copy fitted y</b> puts the curve on your clipboard.</p>
+      <h2 id="cite">Citing</h2>
+      <p>If the bench helped your work, please cite it — citations are how we justify the time to keep improving it. See <a href="about.html#cite">About</a> for BibTeX.</p>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="">Curve Fit Bench</a>
+        <p style="margin-top:12px;max-width:40ch">Least-squares curve fitting for physicists and materials scientists. Runs in your browser; your data never leaves your computer.</p>
+      </div>
+      <div><h4>Product</h4><a href="app/">Launch the bench</a><a href="features.html">Features</a><a href="models.html">Model library</a><a href="benchmark.html">Benchmark</a></div>
+      <div><h4>Learn</h4><a href="docs.html">Documentation</a><a href="assets/curve-fit-bench-manual.pdf">Manual (PDF)</a><a href="about.html#cite">How to cite</a><a href="https://github.com/satyajitpuhan/curve-fit-bench">Source on GitHub</a></div>
+      <div><h4>Work with us</h4><a href="plans.html">Plans &amp; licensing</a><a href="plans.html#sponsor">Sponsor development</a><a href="mailto:puhansatyajit@gmail.com?subject=Curve%20Fit%20Bench%20-%20custom%20model">Request a model</a><a href="about.html">About the authors</a></div>
+    </div>
+    <div class="foot-legal">
+      <span>© 2026 Shivani Malvi &amp; Satyajit Puhan. Free to use for research and teaching; modification and redistribution need written permission (<a href="https://github.com/satyajitpuhan/curve-fit-bench/blob/main/LICENSE">licence</a>).</span>
+      <span><a href="mailto:puhansatyajit@gmail.com">puhansatyajit@gmail.com</a></span>
+    </div>
+  </div>
+</footer>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Features · Curve Fit Bench</title>
+<meta name="description" content="Automatic model search, adaptive decomposition, fit quality by region, parameter explorer and publication figures.">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://satyajitpuhan.github.io/fitbench/features.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Features · Curve Fit Bench">
+<meta property="og:description" content="Automatic model search, adaptive decomposition, fit quality by region, parameter explorer and publication figures.">
+<meta property="og:image" content="https://satyajitpuhan.github.io/fitbench/assets/img/complex-fit.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;650&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="">Curve Fit Bench</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a><a href="features.html" aria-current="page">Features</a><a href="models.html">Models</a><a href="benchmark.html">Benchmark</a><a href="docs.html">Docs</a><a href="about.html">About</a>
+      <a class="plans" href="plans.html">Plans &amp; licensing</a>
+      <a class="btn btn-primary btn-sm" href="app/">Launch the bench</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Features</span>
+    <h1>From a CSV to a publishable fit.</h1>
+    <p class="lead">Paste two or three columns, press nothing, and read the answer: the best functional form, parameters with uncertainties, χ² and whether the residuals are really noise.</p>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <div class="feature">
+      <div class="txt">
+        <span class="eyebrow">Automatic search</span>
+        <h3>Every family competes, fairly.</h3>
+        <p>Polynomials, power laws, exponentials, peaks, periodic forms, sums of two components, a symbolic dictionary search and the physics library are all fitted with Levenberg–Marquardt in y-space. The ranking charges searched forms for having been picked, and the headline goes to the simplest model the best one does not significantly beat.</p>
+        <ul class="ticks"><li>Weighted χ² when σ is given, relative weighting when y spans decades</li><li>BIC, AICc and an F-test parsimony rule</li><li>Outlier rejection with Tukey biweights</li></ul>
+      </div>
+      <img class="shot" src="assets/img/ranking.png" alt="Ranking table of every model tried with reduced chi-square, R squared and AICc" loading="lazy">
+    </div>
+    <div class="feature flip">
+      <div class="txt">
+        <span class="eyebrow">Adaptive decomposition</span>
+        <h3>A model built from the residual.</h3>
+        <p>When nothing comes within the noise, the bench starts from a polynomial background and adds the component that best explains the largest structure still left — a Gaussian, Lorentzian or Fano band, a step, a kink, a damped or chirped oscillation or a wave packet — refits everything together, and keeps it only if the evidence is strong.</p>
+        <ul class="ticks"><li>Components drawn separately on the plot</li><li>Parameters in your own units with error bars</li><li>Explorer and export work on it like any other model</li></ul>
+      </div>
+      <img class="shot" src="assets/img/complex-result.png" alt="Result card for an adaptive decomposition: formula, parameters with uncertainties and region-by-region fit quality" loading="lazy">
+    </div>
+    <div class="feature">
+      <div class="txt">
+        <span class="eyebrow">Fit quality by region</span>
+        <h3>A good χ² can hide a bad region.</h3>
+        <p>The x range is split into up to ten parts with equal numbers of points, each with its own χ²/N or noise-normalised miss, coloured green, orange or red. The runs test flags residuals that arrive in long same-sign stretches — the signature of a missing term.</p>
+      </div>
+      <img class="shot" src="assets/img/result.png" alt="Result card with parameters, chi-square statistics and a verdict" loading="lazy">
+    </div>
+    <div class="feature flip">
+      <div class="txt">
+        <span class="eyebrow">Parameter explorer</span>
+        <h3>What does each number really do?</h3>
+        <p>Choose a fitted parameter and give it a list of values — ×0.5 to ×2, a range, or exact numbers. Every other parameter stays at its fitted value, each curve gets its own χ²/ν, and the explorer plot has its own editor: title, fonts, viridis or plasma schemes, dashed curves, limits, ticks and a legend that can carry χ²/ν.</p>
+      </div>
+      <img class="shot" src="assets/img/explorer-editor.png" alt="Parameter explorer with its plot editor open and five curves in a viridis colour scheme" loading="lazy">
+    </div>
+    <div class="feature">
+      <div class="txt">
+        <span class="eyebrow">Figures</span>
+        <h3>Ready for the paper.</h3>
+        <p>Put χ², χ²/ν, R² and the parameters in a box on the plot, set ranges and tick steps, point ticks inward and mirror them, pick fonts and colours, overlay up to four models or show only the one you selected, then save PNG or PDF at three times screen resolution.</p>
+      </div>
+      <img class="shot" src="assets/img/editor.png" alt="Plot editor with results box, mirrored ticks and a title" loading="lazy">
+    </div>
+  </div>
+</section>
+<section class="band cta-band">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Keep it free for students</span>
+      <h2>Your lab uses it. Help keep it growing.</h2>
+      <p class="lead">Curve Fit Bench is built by two early-career physicists. Licences, sponsorship and custom work pay for new models, verification and support — and keep the bench free for every student who needs it.</p>
+      <div class="btn-row" style="margin-top:24px">
+        <a class="btn btn-primary" href="plans.html">See plans &amp; licensing</a>
+        <a class="btn btn-ghost" href="mailto:puhansatyajit@gmail.com?subject=Curve%20Fit%20Bench%20-%20quote%20request">Request a quote</a>
+      </div>
+    </div>
+    <div class="offer-list">
+      <div><h3>Lab licence</h3><p>Priority model requests, your file formats, email support.</p></div>
+      <div><h3>Commercial &amp; OEM</h3><p>Embed, modify or host the bench in your product or instrument.</p></div>
+      <div><h3>Custom models</h3><p>The model your analysis needs, verified like the rest of the library.</p></div>
+      <div><h3>Workshops</h3><p>A hands-on fitting and statistics session for your department.</p></div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="">Curve Fit Bench</a>
+        <p style="margin-top:12px;max-width:40ch">Least-squares curve fitting for physicists and materials scientists. Runs in your browser; your data never leaves your computer.</p>
+      </div>
+      <div><h4>Product</h4><a href="app/">Launch the bench</a><a href="features.html">Features</a><a href="models.html">Model library</a><a href="benchmark.html">Benchmark</a></div>
+      <div><h4>Learn</h4><a href="docs.html">Documentation</a><a href="assets/curve-fit-bench-manual.pdf">Manual (PDF)</a><a href="about.html#cite">How to cite</a><a href="https://github.com/satyajitpuhan/curve-fit-bench">Source on GitHub</a></div>
+      <div><h4>Work with us</h4><a href="plans.html">Plans &amp; licensing</a><a href="plans.html#sponsor">Sponsor development</a><a href="mailto:puhansatyajit@gmail.com?subject=Curve%20Fit%20Bench%20-%20custom%20model">Request a model</a><a href="about.html">About the authors</a></div>
+    </div>
+    <div class="foot-legal">
+      <span>© 2026 Shivani Malvi &amp; Satyajit Puhan. Free to use for research and teaching; modification and redistribution need written permission (<a href="https://github.com/satyajitpuhan/curve-fit-bench/blob/main/LICENSE">licence</a>).</span>
+      <span><a href="mailto:puhansatyajit@gmail.com">puhansatyajit@gmail.com</a></span>
+    </div>
+  </div>
+</footer>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

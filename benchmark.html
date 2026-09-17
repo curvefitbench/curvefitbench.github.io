@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Benchmark · Curve Fit Bench</title>
+<meta name="description" content="Ten hard datasets and 1000 random complex spectra with known truth.">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://satyajitpuhan.github.io/fitbench/benchmark.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Benchmark · Curve Fit Bench">
+<meta property="og:description" content="Ten hard datasets and 1000 random complex spectra with known truth.">
+<meta property="og:image" content="https://satyajitpuhan.github.io/fitbench/assets/img/complex-fit.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;650&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="">Curve Fit Bench</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a><a href="features.html">Features</a><a href="models.html">Models</a><a href="benchmark.html" aria-current="page">Benchmark</a><a href="docs.html">Docs</a><a href="about.html">About</a>
+      <a class="plans" href="plans.html">Plans &amp; licensing</a>
+      <a class="btn btn-primary btn-sm" href="app/">Launch the bench</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Benchmark</span>
+    <h1>Tested where fitting tools fail.</h1>
+    <p class="lead">Ten deliberately hard datasets from a live conference demo, then a thousand random complex spectra with known truth. A correct model gives a reduced χ² near 1 and a curve closer to the truth than the noise.</p>
+  </div>
+</section>
+<section style="padding-top:clamp(32px,5vw,56px)">
+  <div class="wrap">
+    <div class="kpis">
+      <div class="kpi"><b>994 / 1000</b><span>random complex spectra fitted within the noise (χ²/ν &lt; 1.5); 964 below 1.25</span></div>
+      <div class="kpi"><b>999 / 1000</b><span>fits closer to the true noiseless curve than the noise itself</span></div>
+      <div class="kpi"><b>1.0 s</b><span>median time to build the model; 90 % within 5 s</span></div>
+    </div>
+  </div>
+</section>
+<section class="paper">
+  <div class="wrap" style="display:grid;gap:24px">
+    <div class="chartcard">
+      <h3>Ten hard datasets: best reduced χ²</h3>
+      <p class="sub">Before and after adaptive decomposition, log scale. Hover a row for values.</p>
+      <div class="legend"><span><i style="background:var(--fit)"></i>Before</span><span><i style="background:var(--data)"></i>Now</span></div>
+      <div class="chart-wrap"><div id="bench-chart" data-rows='[["Multi-scale resonance", 5.71, 1.04], ["Two overlapping resonances", 5.43, 0.96], ["Threshold cusp + oscillations", 8.21, 1.18], ["Log-periodic power law", 217, 1.1], ["Fano interference", 36.9, 1.13], ["Damped chirp", 4.68, 0.93], ["Double sigmoid + dip", 4.04, 0.97], ["Broad peak + narrow spike", 3.35, 1.21], ["Rational crossover + ripple", 43.6, 1.04], ["Hard composite", 5.07, 1.05]]'></div><div class="tip" id="bench-tip" hidden></div></div>
+    </div>
+    <div class="chartcard">
+      <h3>The same results as a table</h3>
+      <p class="sub">Each dataset has σ<sub>y</sub>; the noiseless truth was never shown to the fitter.</p>
+      <div class="tbl-wrap"><table class="data"><thead><tr><th>Dataset</th><th class="n">Before</th><th class="n">Now</th></tr></thead><tbody><tr><td>Multi-scale resonance</td><td class="n bad">5.71</td><td class="n ok">1.04</td></tr><tr><td>Two overlapping resonances</td><td class="n bad">5.43</td><td class="n ok">0.96</td></tr><tr><td>Threshold cusp + oscillations</td><td class="n bad">8.21</td><td class="n ok">1.18</td></tr><tr><td>Log-periodic power law</td><td class="n bad">217</td><td class="n ok">1.10</td></tr><tr><td>Fano interference</td><td class="n bad">36.9</td><td class="n ok">1.13</td></tr><tr><td>Damped chirp</td><td class="n bad">4.68</td><td class="n ok">0.93</td></tr><tr><td>Double sigmoid + dip</td><td class="n bad">4.04</td><td class="n ok">0.97</td></tr><tr><td>Broad peak + narrow spike</td><td class="n bad">3.35</td><td class="n ok">1.21</td></tr><tr><td>Rational crossover + ripple</td><td class="n bad">43.6</td><td class="n ok">1.04</td></tr><tr><td>Hard composite</td><td class="n bad">5.07</td><td class="n ok">1.05</td></tr></tbody></table></div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="wrap narrow">
+    <div class="sec-head" style="margin-bottom:20px">
+      <span class="eyebrow">Method</span>
+      <h2>How the 1000 spectra were made</h2>
+    </div>
+    <div class="prose">
+      <p>Each synthetic spectrum stacks 2 to 6 features — Lorentzian, Gaussian, Voigt and Fano bands, dips, steps, cusps, damped and chirped oscillations, wave packets, Shubnikov–de Haas oscillations periodic in 1/x and log-periodic terms — on a linear, quadratic, exponential, power-law, activated or logarithmic background. Grids are linear or logarithmic with 120 to 900 points; noise is 0.4–4 % of the range, constant or growing along x; 61 % of the spectra carry σ and the rest do not.</p>
+      <p>Two numbers are scored against the known truth: the reduced χ² of the fit to the noisy data, and the RMS distance between the fitted curve and the noiseless curve in units of σ. Below 1 means the fit recovered the underlying function better than any single measurement could.</p>
+      <div class="callout"><p><b>What it is and is not.</b> An adaptive decomposition is an accurate description of the data — positions, widths, frequencies and a curve you can trust — not an identification of the physics. When you know the mechanism, fit the named model for it; the bench shows both.</p></div>
+    </div>
+  </div>
+</section>
+<section class="band cta-band">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Keep it free for students</span>
+      <h2>Your lab uses it. Help keep it growing.</h2>
+      <p class="lead">Curve Fit Bench is built by two early-career physicists. Licences, sponsorship and custom work pay for new models, verification and support — and keep the bench free for every student who needs it.</p>
+      <div class="btn-row" style="margin-top:24px">
+        <a class="btn btn-primary" href="plans.html">See plans &amp; licensing</a>
+        <a class="btn btn-ghost" href="mailto:puhansatyajit@gmail.com?subject=Curve%20Fit%20Bench%20-%20quote%20request">Request a quote</a>
+      </div>
+    </div>
+    <div class="offer-list">
+      <div><h3>Lab licence</h3><p>Priority model requests, your file formats, email support.</p></div>
+      <div><h3>Commercial &amp; OEM</h3><p>Embed, modify or host the bench in your product or instrument.</p></div>
+      <div><h3>Custom models</h3><p>The model your analysis needs, verified like the rest of the library.</p></div>
+      <div><h3>Workshops</h3><p>A hands-on fitting and statistics session for your department.</p></div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="">Curve Fit Bench</a>
+        <p style="margin-top:12px;max-width:40ch">Least-squares curve fitting for physicists and materials scientists. Runs in your browser; your data never leaves your computer.</p>
+      </div>
+      <div><h4>Product</h4><a href="app/">Launch the bench</a><a href="features.html">Features</a><a href="models.html">Model library</a><a href="benchmark.html">Benchmark</a></div>
+      <div><h4>Learn</h4><a href="docs.html">Documentation</a><a href="assets/curve-fit-bench-manual.pdf">Manual (PDF)</a><a href="about.html#cite">How to cite</a><a href="https://github.com/satyajitpuhan/curve-fit-bench">Source on GitHub</a></div>
+      <div><h4>Work with us</h4><a href="plans.html">Plans &amp; licensing</a><a href="plans.html#sponsor">Sponsor development</a><a href="mailto:puhansatyajit@gmail.com?subject=Curve%20Fit%20Bench%20-%20custom%20model">Request a model</a><a href="about.html">About the authors</a></div>
+    </div>
+    <div class="foot-legal">
+      <span>© 2026 Shivani Malvi &amp; Satyajit Puhan. Free to use for research and teaching; modification and redistribution need written permission (<a href="https://github.com/satyajitpuhan/curve-fit-bench/blob/main/LICENSE">licence</a>).</span>
+      <span><a href="mailto:puhansatyajit@gmail.com">puhansatyajit@gmail.com</a></span>
+    </div>
+  </div>
+</footer>
+<script src="assets/site.js" defer></script>
+</body>
+</html>
