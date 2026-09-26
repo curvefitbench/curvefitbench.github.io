@@ -11,7 +11,11 @@
 <meta property="og:title" content="Curve Fit Bench — curve fitting for physicists">
 <meta property="og:description" content="Free in-browser least-squares fitting with 442 physical models and adaptive decomposition for complex data. By Shivani Malvi and Satyajit Puhan.">
 <meta property="og:image" content="https://curvefitbench.github.io/assets/img/complex-fit.png">
+<meta property="og:site_name" content="Curve Fit Bench">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="Shivani Malvi, Satyajit Puhan">
+<meta name="keywords" content="curve fitting, free curve fitting software, least squares, nonlinear fit, physics data analysis, condensed matter, materials science, spectroscopy fitting, peak fitting, BCS fit, Tauc plot, online fitting tool">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Curve Fit Bench", "applicationCategory": "ScientificApplication", "operatingSystem": "Any (web browser)", "url": "https://curvefitbench.github.io/", "description": "Free in-browser least-squares curve fitting with 442 physical models and automatic model selection.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": [{"@type": "Person", "name": "Shivani Malvi"}, {"@type": "Person", "name": "Satyajit Puhan"}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;650&display=swap">
@@ -19,6 +23,12 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<div class="topbar">
+  <div class="wrap">
+    <span>Developed by <a href="about.html"><b>Shivani Malvi</b> &amp; <b>Satyajit Puhan</b></a></span>
+    <span class="tb-r">Free for research &amp; teaching · no sign-up · nothing to install</span>
+  </div>
+</div>
 <header class="site-head">
   <div class="wrap">
     <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="">Curve Fit Bench</a>
@@ -36,12 +46,15 @@
     <div>
       <span class="eyebrow">Curve fitting for physicists</span>
       <h1>Fit the curve <span class="fit">nobody wrote down.</span></h1>
+      <p class="byline">By <a href="about.html">Shivani Malvi</a> <span>(UGC-DAE CSR, Indore)</span> &amp; <a href="about.html">Satyajit Puhan</a> <span>(Academia Sinica, Taipei)</span></p>
       <p class="lead">Drop in x, y and σ. Curve Fit Bench searches 442 physical models, and when none of them describes your data it builds the model itself, piece by piece, until what is left is noise. You get the formula, every parameter with its uncertainty, and χ².</p>
       <div class="btn-row">
         <a class="btn btn-primary" href="app/">Launch the bench — free</a>
         <a class="btn btn-ghost" href="plans.html">Licences for labs &amp; companies</a>
       </div>
-      <p class="fine">Runs in the browser · nothing to install · data never leaves your computer</p>
+      <ul class="badges" aria-label="Highlights">
+        <li>100% free for research</li><li>No account</li><li>Runs in your browser</li><li>Your data never leaves your computer</li>
+      </ul>
     </div>
     <figure class="scope" style="margin:0" aria-label="Animation: a model being built for a complex dataset, one component at a time">
       <div class="scope-bar"><b>hard_composite.csv</b> · 450 points with σ <span class="step" id="scope-step">step 0</span></div>
@@ -63,6 +76,41 @@
     <div><b>0</b><span>installs, accounts or uploads</span></div>
   </div>
 </div>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Your first fit in under a minute.</h2>
+    </div>
+    <ol class="steps">
+      <li><span class="num">1</span><h3>Drop in your data</h3><p>A CSV or TXT file, or paste x&nbsp;y (and σ) straight from your spreadsheet. Instrument files with header lines work too.</p></li>
+      <li><span class="num">2</span><h3>The bench searches</h3><p>442 physical models and every sensible functional form compete. If none fits, it builds a model from the residual.</p></li>
+      <li><span class="num">3</span><h3>Take the result</h3><p>Formula, parameters with error bars, χ² and a publication-ready figure as PNG or PDF, ready for your paper or thesis.</p></li>
+    </ol>
+    <div class="btn-row" style="margin-top:28px"><a class="btn btn-primary" href="app/">Try it now with the sample data</a></div>
+  </div>
+</section>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Made for your field</span>
+      <h2>The models your field uses, ready to fit.</h2>
+      <p>Pick your area to see the models waiting for your data.</p>
+    </div>
+    <div class="fields">
+      <a href="models.html#Superconductivity"><b>Superconductivity</b><span>BCS gap, superfluid density, WHH H<sub>c2</sub></span></a>
+      <a href="models.html#Optical%20%26%20semiconductor"><b>Optics &amp; semiconductors</b><span>Tauc, Urbach, Elliott excitons</span></a>
+      <a href="models.html#Transport"><b>Transport</b><span>Bloch–Grüneisen, variable-range hopping, Kondo, weak localisation</span></a>
+      <a href="models.html#Magnetism"><b>Magnetism</b><span>Curie–Weiss, Brillouin, Bloch T<sup>3/2</sup></span></a>
+      <a href="models.html#Quantum%20oscillations"><b>Quantum oscillations</b><span>Lifshitz–Kosevich, Shubnikov–de Haas</span></a>
+      <a href="models.html#Line%20shapes"><b>Spectroscopy</b><span>Lorentzian, Voigt, Fano, Pearson VII</span></a>
+      <a href="models.html#Dielectric%20%26%20impedance"><b>Dielectrics</b><span>Debye, Cole–Cole, Havriliak–Negami</span></a>
+      <a href="models.html#Polymers%20%26%20rheology"><b>Polymers &amp; rheology</b><span>Kelvin–Voigt creep and viscoelastic models</span></a>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="wrap">
@@ -115,6 +163,23 @@
   </div>
 </section>
 
+<section class="share">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Spread the word</span>
+      <h2>Know someone stuck on a fit?</h2>
+      <p>Send Curve Fit Bench to your lab group, your students or that colleague who still fits everything by hand. It's free, and it helps us keep it that way.</p>
+    </div>
+    <div class="share-btns">
+      <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/?text=Curve%20Fit%20Bench%3A%20free%20curve%20fitting%20for%20physicists%2C%20with%20440%2B%20physics%20models%2C%20in%20the%20browser%20https%3A//curvefitbench.github.io/">WhatsApp</a>
+      <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//curvefitbench.github.io/">LinkedIn</a>
+      <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://x.com/intent/post?text=Curve%20Fit%20Bench%3A%20free%20curve%20fitting%20for%20physicists%2C%20with%20440%2B%20physics%20models%2C%20in%20the%20browser&amp;url=https%3A//curvefitbench.github.io/">X / Twitter</a>
+      <a class="btn btn-ghost" href="mailto:?subject=Curve%20Fit%20Bench%20-%20free%20curve%20fitting&amp;body=Curve%20Fit%20Bench%3A%20free%20curve%20fitting%20for%20physicists%2C%20with%20440%2B%20physics%20models%2C%20in%20the%20browser%0Ahttps%3A//curvefitbench.github.io/">Email</a>
+      <button class="btn btn-primary" type="button" data-share="https://curvefitbench.github.io/">Copy link</button>
+    </div>
+  </div>
+</section>
+
 <section class="band cta-band">
   <div class="wrap">
     <div>
@@ -144,11 +209,11 @@
         <p style="margin-top:12px;max-width:40ch">Least-squares curve fitting for physicists and materials scientists. Runs in your browser; your data never leaves your computer.</p>
       </div>
       <div><h4>Product</h4><a href="app/">Launch the bench</a><a href="features.html">Features</a><a href="models.html">Model library</a><a href="benchmark.html">Benchmark</a></div>
-      <div><h4>Learn</h4><a href="docs.html">Documentation</a><a href="assets/curve-fit-bench-manual.pdf">Manual (PDF)</a><a href="about.html#cite">How to cite</a><a href="https://github.com/satyajitpuhan/curve-fit-bench">Source on GitHub</a></div>
+      <div><h4>Learn</h4><a href="docs.html">Documentation</a><a href="assets/curve-fit-bench-manual.pdf">Manual (PDF)</a><a href="about.html#cite">How to cite</a><a href="about.html#licence">Licence</a></div>
       <div><h4>Work with us</h4><a href="plans.html">Plans &amp; licensing</a><a href="plans.html#sponsor">Sponsor development</a><a href="mailto:puhansatyajit@gmail.com?subject=Curve%20Fit%20Bench%20-%20custom%20model">Request a model</a><a href="about.html">About the authors</a></div>
     </div>
     <div class="foot-legal">
-      <span>© 2026 Shivani Malvi &amp; Satyajit Puhan. Free to use for research and teaching; modification and redistribution need written permission (<a href="https://github.com/satyajitpuhan/curve-fit-bench/blob/main/LICENSE">licence</a>).</span>
+      <span>© 2026 Shivani Malvi &amp; Satyajit Puhan. Free to use for research and teaching; modification and redistribution need written permission (<a href="about.html#licence">licence</a>).</span>
       <span><a href="mailto:puhansatyajit@gmail.com">puhansatyajit@gmail.com</a></span>
     </div>
   </div>

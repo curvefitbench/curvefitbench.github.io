@@ -3,8 +3,6 @@
 import os, html, json
 
 EMAIL = 'puhansatyajit@gmail.com'
-REPO = 'https://github.com/satyajitpuhan/curve-fit-bench'
-SPONSOR = 'https://github.com/sponsors/satyajitpuhan'
 SITE = 'https://curvefitbench.github.io/'
 _mjs = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets', 'models.js'), encoding='utf-8').read()
 N_MODELS = len(json.loads(_mjs[_mjs.index('=') + 1:].rstrip().rstrip(';')))
@@ -24,6 +22,14 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800'
          '&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;650&display=swap">')
 
+LDJSON = '<script type="application/ld+json">' + json.dumps({
+    '@context': 'https://schema.org', '@type': 'SoftwareApplication', 'name': 'Curve Fit Bench',
+    'applicationCategory': 'ScientificApplication', 'operatingSystem': 'Any (web browser)', 'url': SITE,
+    'description': f'Free in-browser least-squares curve fitting with {N_MODELS} physical models and automatic model selection.',
+    'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'USD'},
+    'author': [{'@type': 'Person', 'name': 'Shivani Malvi'}, {'@type': 'Person', 'name': 'Satyajit Puhan'}]},
+    ensure_ascii=False) + '</script>\n'
+
 def head(page, title, desc):
     full = title if page == 'index.html' else title + ' · Curve Fit Bench'
     return f'''<!doctype html>
@@ -39,8 +45,11 @@ def head(page, title, desc):
 <meta property="og:title" content="{html.escape(full)}">
 <meta property="og:description" content="{html.escape(desc)}">
 <meta property="og:image" content="{SITE}assets/img/complex-fit.png">
+<meta property="og:site_name" content="Curve Fit Bench">
 <meta name="twitter:card" content="summary_large_image">
-{FONTS}
+<meta name="author" content="Shivani Malvi, Satyajit Puhan">
+<meta name="keywords" content="curve fitting, free curve fitting software, least squares, nonlinear fit, physics data analysis, condensed matter, materials science, spectroscopy fitting, peak fitting, BCS fit, Tauc plot, online fitting tool">
+{LDJSON if page == 'index.html' else ''}{FONTS}
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
@@ -50,6 +59,12 @@ def header(page):
     links = ''.join(
         '<a href="' + href + '"' + (' aria-current="page"' if href == page else '') + '>' + label + '</a>' for href, label in NAV)
     return f'''<a class="skip" href="#main">Skip to content</a>
+<div class="topbar">
+  <div class="wrap">
+    <span>Developed by <a href="about.html"><b>Shivani Malvi</b> &amp; <b>Satyajit Puhan</b></a></span>
+    <span class="tb-r">Free for research &amp; teaching · no sign-up · nothing to install</span>
+  </div>
+</div>
 <header class="site-head">
   <div class="wrap">
     <a class="brand" href="index.html"><img src="assets/img/logo.svg" alt="">Curve Fit Bench</a>
@@ -73,11 +88,11 @@ FOOTER = f'''</main>
         <p style="margin-top:12px;max-width:40ch">Least-squares curve fitting for physicists and materials scientists. Runs in your browser; your data never leaves your computer.</p>
       </div>
       <div><h4>Product</h4><a href="app/">Launch the bench</a><a href="features.html">Features</a><a href="models.html">Model library</a><a href="benchmark.html">Benchmark</a></div>
-      <div><h4>Learn</h4><a href="docs.html">Documentation</a><a href="assets/curve-fit-bench-manual.pdf">Manual (PDF)</a><a href="about.html#cite">How to cite</a><a href="{REPO}">Source on GitHub</a></div>
+      <div><h4>Learn</h4><a href="docs.html">Documentation</a><a href="assets/curve-fit-bench-manual.pdf">Manual (PDF)</a><a href="about.html#cite">How to cite</a><a href="about.html#licence">Licence</a></div>
       <div><h4>Work with us</h4><a href="plans.html">Plans &amp; licensing</a><a href="plans.html#sponsor">Sponsor development</a><a href="{mail('Curve Fit Bench - custom model')}">Request a model</a><a href="about.html">About the authors</a></div>
     </div>
     <div class="foot-legal">
-      <span>© 2026 Shivani Malvi &amp; Satyajit Puhan. Free to use for research and teaching; modification and redistribution need written permission (<a href="{REPO}/blob/main/LICENSE">licence</a>).</span>
+      <span>© 2026 Shivani Malvi &amp; Satyajit Puhan. Free to use for research and teaching; modification and redistribution need written permission (<a href="about.html#licence">licence</a>).</span>
       <span><a href="mailto:{EMAIL}">{EMAIL}</a></span>
     </div>
   </div>
@@ -95,6 +110,7 @@ _M0 = mail('Curve Fit Bench - custom model', 'Model name / equation:\n\nWhat x a
 _M1 = mail('Curve Fit Bench - lab licence', 'Group / institution:\n\nNumber of users:\n\nInstruments or file formats:\n\nModels you would like added:\n')
 _M2 = mail('Curve Fit Bench - commercial licence', 'Company:\n\nHow you would like to use the bench:\n\nTimeline:\n')
 _M3 = mail('Curve Fit Bench - custom work', 'What you need:\n\nDeadline:\n')
+_M4 = mail('Curve Fit Bench - bug report', 'What happened:\n\nWhat you expected:\n\nBrowser:\n')
 
 CTA_BAND = f'''<section class="band cta-band">
   <div class="wrap">
@@ -117,18 +133,41 @@ CTA_BAND = f'''<section class="band cta-band">
 </section>
 '''
 
+from urllib.parse import quote as _q
+_SHARE_TXT = 'Curve Fit Bench: free curve fitting for physicists, with 440+ physics models, in the browser'
+SHARE = f'''<section class="share">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Spread the word</span>
+      <h2>Know someone stuck on a fit?</h2>
+      <p>Send Curve Fit Bench to your lab group, your students or that colleague who still fits everything by hand. It's free, and it helps us keep it that way.</p>
+    </div>
+    <div class="share-btns">
+      <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/?text={_q(_SHARE_TXT + ' ' + SITE)}">WhatsApp</a>
+      <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url={_q(SITE)}">LinkedIn</a>
+      <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://x.com/intent/post?text={_q(_SHARE_TXT)}&amp;url={_q(SITE)}">X / Twitter</a>
+      <a class="btn btn-ghost" href="mailto:?subject={_q('Curve Fit Bench - free curve fitting')}&amp;body={_q(_SHARE_TXT + chr(10) + SITE)}">Email</a>
+      <button class="btn btn-primary" type="button" data-share="{SITE}">Copy link</button>
+    </div>
+  </div>
+</section>
+'''
+
 # ---------------------------------------------------------------- home
 HOME = f'''<section class="hero">
   <div class="wrap">
     <div>
       <span class="eyebrow">Curve fitting for physicists</span>
       <h1>Fit the curve <span class="fit">nobody wrote down.</span></h1>
+      <p class="byline">By <a href="about.html">Shivani Malvi</a> <span>(UGC-DAE CSR, Indore)</span> &amp; <a href="about.html">Satyajit Puhan</a> <span>(Academia Sinica, Taipei)</span></p>
       <p class="lead">Drop in x, y and σ. Curve Fit Bench searches {N_MODELS} physical models, and when none of them describes your data it builds the model itself, piece by piece, until what is left is noise. You get the formula, every parameter with its uncertainty, and χ².</p>
       <div class="btn-row">
         <a class="btn btn-primary" href="app/">Launch the bench — free</a>
         <a class="btn btn-ghost" href="plans.html">Licences for labs &amp; companies</a>
       </div>
-      <p class="fine">Runs in the browser · nothing to install · data never leaves your computer</p>
+      <ul class="badges" aria-label="Highlights">
+        <li>100% free for research</li><li>No account</li><li>Runs in your browser</li><li>Your data never leaves your computer</li>
+      </ul>
     </div>
     <figure class="scope" style="margin:0" aria-label="Animation: a model being built for a complex dataset, one component at a time">
       <div class="scope-bar"><b>hard_composite.csv</b> · 450 points with σ <span class="step" id="scope-step">step 0</span></div>
@@ -150,6 +189,41 @@ HOME = f'''<section class="hero">
     <div><b>0</b><span>installs, accounts or uploads</span></div>
   </div>
 </div>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Your first fit in under a minute.</h2>
+    </div>
+    <ol class="steps">
+      <li><span class="num">1</span><h3>Drop in your data</h3><p>A CSV or TXT file, or paste x&nbsp;y (and σ) straight from your spreadsheet. Instrument files with header lines work too.</p></li>
+      <li><span class="num">2</span><h3>The bench searches</h3><p>{N_MODELS} physical models and every sensible functional form compete. If none fits, it builds a model from the residual.</p></li>
+      <li><span class="num">3</span><h3>Take the result</h3><p>Formula, parameters with error bars, χ² and a publication-ready figure as PNG or PDF, ready for your paper or thesis.</p></li>
+    </ol>
+    <div class="btn-row" style="margin-top:28px"><a class="btn btn-primary" href="app/">Try it now with the sample data</a></div>
+  </div>
+</section>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Made for your field</span>
+      <h2>The models your field uses, ready to fit.</h2>
+      <p>Pick your area to see the models waiting for your data.</p>
+    </div>
+    <div class="fields">
+      <a href="models.html#Superconductivity"><b>Superconductivity</b><span>BCS gap, superfluid density, WHH H<sub>c2</sub></span></a>
+      <a href="models.html#Optical%20%26%20semiconductor"><b>Optics &amp; semiconductors</b><span>Tauc, Urbach, Elliott excitons</span></a>
+      <a href="models.html#Transport"><b>Transport</b><span>Bloch–Grüneisen, variable-range hopping, Kondo, weak localisation</span></a>
+      <a href="models.html#Magnetism"><b>Magnetism</b><span>Curie–Weiss, Brillouin, Bloch T<sup>3/2</sup></span></a>
+      <a href="models.html#Quantum%20oscillations"><b>Quantum oscillations</b><span>Lifshitz–Kosevich, Shubnikov–de Haas</span></a>
+      <a href="models.html#Line%20shapes"><b>Spectroscopy</b><span>Lorentzian, Voigt, Fano, Pearson VII</span></a>
+      <a href="models.html#Dielectric%20%26%20impedance"><b>Dielectrics</b><span>Debye, Cole–Cole, Havriliak–Negami</span></a>
+      <a href="models.html#Polymers%20%26%20rheology"><b>Polymers &amp; rheology</b><span>Kelvin–Voigt creep and viscoelastic models</span></a>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="wrap">
@@ -202,6 +276,7 @@ HOME = f'''<section class="hero">
   </div>
 </section>
 
+{SHARE}
 {CTA_BAND}
 '''
 
@@ -406,7 +481,7 @@ PLANS = f'''<section class="page-hero">
         <h3>Free</h3>
         <div class="price">₹0 <small>forever</small></div>
         <p>The complete bench for personal, academic and teaching use.</p>
-        <ul><li>Every model and the adaptive decomposition</li><li>Explorer, plot editor, PNG &amp; PDF export</li><li>Use results in papers and theses, with citation</li><li>Community help through GitHub issues</li></ul>
+        <ul><li>Every model and the adaptive decomposition</li><li>Explorer, plot editor, PNG &amp; PDF export</li><li>Use results in papers and theses, with citation</li><li>Help and bug fixes by email</li></ul>
         <a class="btn btn-ghost" href="app/">Launch the bench</a>
       </div>
       <div class="plan feat">
@@ -447,7 +522,7 @@ PLANS = f'''<section class="page-hero">
       <p class="lead">A monthly sponsorship, of any size, directly funds new models, verification against synthetic data and keeping the bench free for students. Institutional sponsors are listed on this site and in the app.</p>
     </div>
     <div class="btn-row" style="justify-content:flex-start">
-      <a class="btn btn-primary" href="{SPONSOR}">Sponsor on GitHub</a>
+      <a class="btn btn-primary" href="{mail('Curve Fit Bench - sponsorship')}">Become a sponsor</a>
       <a class="btn btn-ghost" href="{mail('Curve Fit Bench - institutional sponsorship')}">Institutional sponsorship</a>
     </div>
   </div>
@@ -473,7 +548,7 @@ BIB = '''@software{malvi_puhan_curvefitbench_2026,
   author = {Malvi, Shivani and Puhan, Satyajit},
   title  = {Curve Fit Bench: least-squares curve fitting with automatic model selection},
   year   = {2026},
-  url    = {https://github.com/satyajitpuhan/curve-fit-bench}
+  url    = {https://curvefitbench.github.io/}
 }'''
 ABOUT = f'''<section class="page-hero">
   <div class="wrap">
@@ -496,7 +571,7 @@ ABOUT = f'''<section class="page-hero">
       <span class="eyebrow">How to cite</span>
       <h2 style="font-size:clamp(28px,3.6vw,40px);margin:12px 0 12px">If it helped, cite it.</h2>
       <p style="color:var(--ink-2)">Citations are what let two early-career researchers justify the hours that go into new models and verification. A line in your methods section makes a real difference.</p>
-      <div class="cite" style="margin-top:16px"><pre id="cite-plain">S. Malvi and S. Puhan, Curve Fit Bench (2026). https://github.com/satyajitpuhan/curve-fit-bench</pre><button class="btn btn-ghost btn-sm" type="button" data-copy="#cite-plain">Copy citation</button></div>
+      <div class="cite" style="margin-top:16px"><pre id="cite-plain">S. Malvi and S. Puhan, Curve Fit Bench (2026). https://curvefitbench.github.io/</pre><button class="btn btn-ghost btn-sm" type="button" data-copy="#cite-plain">Copy citation</button></div>
     </div>
     <div class="cite"><pre id="cite-bib">{html.escape(BIB)}</pre><button class="btn btn-ghost btn-sm" type="button" data-copy="#cite-bib">Copy BibTeX</button></div>
   </div>
@@ -507,9 +582,9 @@ ABOUT = f'''<section class="page-hero">
       <span class="eyebrow">Contact</span>
       <h2 style="font-size:clamp(28px,3.6vw,40px);margin:12px 0 12px">Talk to us.</h2>
       <p style="color:var(--ink-2)">Licences, custom models, workshops, bug reports or a dataset that beats the bench — we read everything.</p>
-      <div class="btn-row" style="margin-top:18px"><a class="btn btn-primary" href="mailto:{EMAIL}">{EMAIL}</a><a class="btn btn-ghost" href="{REPO}/issues">GitHub issues</a></div>
+      <div class="btn-row" style="margin-top:18px"><a class="btn btn-primary" href="mailto:{EMAIL}">{EMAIL}</a><a class="btn btn-ghost" href="{_M4}">Report a bug</a></div>
     </div>
-    <div class="card">
+    <div class="card" id="licence">
       <h3>Licence in one paragraph</h3>
       <p>Free to use, download unmodified copies of and publish results from, with citation. Modifying, redistributing, hosting or selling the bench needs written permission — which is what the <a href="plans.html">commercial licence</a> provides.</p>
     </div>
@@ -532,4 +607,7 @@ if __name__ == '__main__':
     for name, title, desc, body, scripts in PAGES:
         open(os.path.join(here, name), 'w', encoding='utf-8').write(close(page(name, title, desc, body, scripts)))
     open(os.path.join(here, '.nojekyll'), 'w').write('')
+    urls = ''.join(f'  <url><loc>{SITE}{"" if n == "index.html" else n}</loc></url>\n' for n, *_ in PAGES) + f'  <url><loc>{SITE}app/</loc></url>\n'
+    open(os.path.join(here, 'sitemap.xml'), 'w', encoding='utf-8').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + '</urlset>\n')
+    open(os.path.join(here, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nSitemap: {SITE}sitemap.xml\n')
     print('built', len(PAGES), 'pages')

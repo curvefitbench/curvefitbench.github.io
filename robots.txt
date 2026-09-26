@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://curvefitbench.github.io/sitemap.xml

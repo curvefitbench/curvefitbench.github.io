@@ -11,6 +11,17 @@
     mb.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 
+  /* share: native share sheet on phones, copy link elsewhere */
+  document.querySelectorAll('[data-share]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var url = b.getAttribute('data-share'), label = b.textContent;
+      var flash = function (t) { b.textContent = t; setTimeout(function () { b.textContent = label; }, 1800); };
+      if (navigator.share) { navigator.share({ title: 'Curve Fit Bench', url: url }).catch(function () {}); return; }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function () { flash('Link copied'); }, function () { flash(url); });
+      else flash(url);
+    });
+  });
+
   /* copy buttons: data-copy="#id" */
   document.querySelectorAll('[data-copy]').forEach(function (b) {
     b.addEventListener('click', function () {
