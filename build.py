@@ -5,7 +5,7 @@ import os, html, json
 EMAIL = 'puhansatyajit@gmail.com'
 REPO = 'https://github.com/satyajitpuhan/curve-fit-bench'
 SPONSOR = 'https://github.com/sponsors/satyajitpuhan'
-SITE = 'https://satyajitpuhan.github.io/fitbench/'
+SITE = 'https://curvefitbench.github.io/'
 _mjs = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets', 'models.js'), encoding='utf-8').read()
 N_MODELS = len(json.loads(_mjs[_mjs.index('=') + 1:].rstrip().rstrip(';')))
 
