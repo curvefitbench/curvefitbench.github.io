@@ -4,6 +4,25 @@
   var css = function (n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); };
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* Integrity guards.
+     1. Refuse to render inside another site's frame (clickjacking, "wrapped" copies).
+     2. On any host other than the official one, say so and link to the original. */
+  var OFFICIAL = 'curvefitbench.github.io';
+  var notice = function (html) {
+    var d = document.createElement('div');
+    d.className = 'guard'; d.setAttribute('role', 'alert'); d.innerHTML = html;
+    document.body.insertBefore(d, document.body.firstChild);
+  };
+  if (window.top !== window.self) {
+    document.body.innerHTML = '';
+    notice('Curve Fit Bench cannot be shown inside another website. <a href="https://' + OFFICIAL + '/" target="_top" rel="noopener noreferrer">Open the official site</a>.');
+    return;
+  }
+  var host = location.hostname;
+  if (/^https?:$/.test(location.protocol) && host !== OFFICIAL && host !== 'localhost' && host !== '127.0.0.1') {
+    notice('This is an unofficial copy of Curve Fit Bench. The official, up-to-date site is <a href="https://' + OFFICIAL + '/">' + OFFICIAL + '</a>.');
+  }
+
   /* mobile menu */
   var mb = $('.menu-btn'), nav = $('.nav');
   if (mb && nav) mb.addEventListener('click', function () {

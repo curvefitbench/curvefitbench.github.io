@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'self'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Curve Fit Bench — curve fitting for physicists</title>
 <meta name="description" content="Free in-browser least-squares fitting with 442 physical models and adaptive decomposition for complex data. By Shivani Malvi and Satyajit Puhan.">
 <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
@@ -16,9 +18,7 @@
 <meta name="author" content="Shivani Malvi, Satyajit Puhan">
 <meta name="keywords" content="curve fitting, free curve fitting software, least squares, nonlinear fit, physics data analysis, condensed matter, materials science, spectroscopy fitting, peak fitting, BCS fit, Tauc plot, online fitting tool">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Curve Fit Bench", "applicationCategory": "ScientificApplication", "operatingSystem": "Any (web browser)", "url": "https://curvefitbench.github.io/", "description": "Free in-browser least-squares curve fitting with 442 physical models and automatic model selection.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": [{"@type": "Person", "name": "Shivani Malvi"}, {"@type": "Person", "name": "Satyajit Puhan"}]}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;650&display=swap">
+<link rel="stylesheet" href="assets/fonts/site-fonts.css">
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
@@ -171,9 +171,9 @@
       <p>Send Curve Fit Bench to your lab group, your students or that colleague who still fits everything by hand. It's free, and it helps us keep it that way.</p>
     </div>
     <div class="share-btns">
-      <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/?text=Curve%20Fit%20Bench%3A%20free%20curve%20fitting%20for%20physicists%2C%20with%20440%2B%20physics%20models%2C%20in%20the%20browser%20https%3A//curvefitbench.github.io/">WhatsApp</a>
-      <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//curvefitbench.github.io/">LinkedIn</a>
-      <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://x.com/intent/post?text=Curve%20Fit%20Bench%3A%20free%20curve%20fitting%20for%20physicists%2C%20with%20440%2B%20physics%20models%2C%20in%20the%20browser&amp;url=https%3A//curvefitbench.github.io/">X / Twitter</a>
+      <a class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="https://wa.me/?text=Curve%20Fit%20Bench%3A%20free%20curve%20fitting%20for%20physicists%2C%20with%20440%2B%20physics%20models%2C%20in%20the%20browser%20https%3A//curvefitbench.github.io/">WhatsApp</a>
+      <a class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//curvefitbench.github.io/">LinkedIn</a>
+      <a class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="https://x.com/intent/post?text=Curve%20Fit%20Bench%3A%20free%20curve%20fitting%20for%20physicists%2C%20with%20440%2B%20physics%20models%2C%20in%20the%20browser&amp;url=https%3A//curvefitbench.github.io/">X / Twitter</a>
       <a class="btn btn-ghost" href="mailto:?subject=Curve%20Fit%20Bench%20-%20free%20curve%20fitting&amp;body=Curve%20Fit%20Bench%3A%20free%20curve%20fitting%20for%20physicists%2C%20with%20440%2B%20physics%20models%2C%20in%20the%20browser%0Ahttps%3A//curvefitbench.github.io/">Email</a>
       <button class="btn btn-primary" type="button" data-share="https://curvefitbench.github.io/">Copy link</button>
     </div>

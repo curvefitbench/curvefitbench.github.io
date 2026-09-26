@@ -1,0 +1,5 @@
+Contact: mailto:puhansatyajit@gmail.com
+Expires: 2027-09-26T00:00:00.000Z
+Preferred-Languages: en, hi
+Canonical: https://curvefitbench.github.io/.well-known/security.txt
+Policy: https://curvefitbench.github.io/about.html#licence
