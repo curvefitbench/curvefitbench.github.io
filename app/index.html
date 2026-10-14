@@ -23,12 +23,17 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-S9tGZ87/fOfjZ4HCrhvB4RHyNUd9Lox5wQlXQcC8Kr4='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="copyright" content="Copyright (c) 2026 Satyajit Puhan (SIBI). Free to use; modification and redistribution require permission.">
-<meta name="description" content="Least-squares curve fitting in the browser: 440+ condensed-matter and materials-science models, automatic model selection, physical bounds, uncertainties and a parameter explorer.">
+<meta name="description" content="Free online data fitter and curve fitting tool: paste x, y data and fit 440+ physical models by nonlinear least squares, with automatic model selection, uncertainties and χ². Runs in your browser, nothing to install.">
 
-<title>Curve Fit Bench</title>
+<title>Free Online Curve Fitter &amp; Data Fitter · Curve Fit Bench</title>
+<link rel="canonical" href="https://curvefitbench.github.io/app/">
+<meta name="keywords" content="data fitter, curve fitter, online curve fitting, online data fitting, fit data online, curve fitting tool, nonlinear regression, least squares fitting, free curve fitting software, physics data analysis">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Curve Fit Bench", "alternateName": ["Online curve fitter", "Online data fitter"], "url": "https://curvefitbench.github.io/app/", "applicationCategory": "ScientificApplication", "operatingSystem": "Any (web browser)", "isAccessibleForFree": true, "description": "Free in-browser curve and data fitting: nonlinear least squares with 440+ physical models, automatic model selection, parameter uncertainties and reduced χ².", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": [{"@type": "Person", "name": "Shivani Malvi"}, {"@type": "Person", "name": "Satyajit Puhan"}]}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2714%27%20fill%3D%27%2315171a%27/%3E%3Cpath%20d%3D%27M10%2050%20C%2024%2048%2C%2030%2014%2C%2054%2012%27%20fill%3D%27none%27%20stroke%3D%27%23ef7c4d%27%20stroke-width%3D%274.5%27%20stroke-linecap%3D%27round%27/%3E%3Cg%20fill%3D%27%2363a2ea%27%3E%3Ccircle%20cx%3D%2714%27%20cy%3D%2747%27%20r%3D%273.6%27/%3E%3Ccircle%20cx%3D%2724%27%20cy%3D%2742%27%20r%3D%273.6%27/%3E%3Ccircle%20cx%3D%2731%27%20cy%3D%2730%27%20r%3D%273.6%27/%3E%3Ccircle%20cx%3D%2740%27%20cy%3D%2719%27%20r%3D%273.6%27/%3E%3Ccircle%20cx%3D%2751%27%20cy%3D%2714%27%20r%3D%273.6%27/%3E%3C/g%3E%3C/svg%3E">
-<meta property="og:title" content="Curve Fit Bench">
-<meta property="og:description" content="Least-squares curve fitting in the browser with 440+ condensed-matter and materials-science models. Nothing to install.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Curve Fit Bench">
+<meta property="og:title" content="Free Online Curve Fitter &amp; Data Fitter · Curve Fit Bench">
+<meta property="og:description" content="Free online curve fitter and data fitter: fit your x, y data to 440+ physical models in the browser. Nothing to install.">
 <meta property="og:image" content="https://curvefitbench.github.io/assets/img/complex-fit.png">
 <meta property="og:url" content="https://curvefitbench.github.io/app/">
 <meta name="twitter:card" content="summary_large_image">
@@ -691,7 +696,7 @@ footer.foot code{font-family:var(--mono);color:var(--ink-2)}
   <header class="masthead">
     <div class="brand">
       <h1>Curve Fit Bench</h1>
-      <p>Drop in <em>x, y</em> (and σ<sub>y</sub> if you have it). Either let the bench search every model family for the lowest reduced χ², or type your own equations and have those fitted — both print the functional form with parameters, uncertainties and χ².</p>
+      <p>A free online curve fitter and data fitter. Drop in <em>x, y</em> (and σ<sub>y</sub> if you have it). Either let the bench search every model family for the lowest reduced χ², or type your own equations and have those fitted — both print the functional form with parameters, uncertainties and χ².</p>
     </div>
     <div class="mast-right">
       <div class="credit-top">by <b>Shivani Malvi</b> &amp; <b>Satyajit Puhan</b></div>
